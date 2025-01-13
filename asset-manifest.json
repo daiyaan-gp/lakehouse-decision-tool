@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/lakehouse-decision-tool/static/css/main.6d0649ce.css",
+    "main.js": "/lakehouse-decision-tool/static/js/main.d15d3a95.js",
+    "index.html": "/lakehouse-decision-tool/index.html",
+    "main.6d0649ce.css.map": "/lakehouse-decision-tool/static/css/main.6d0649ce.css.map",
+    "main.d15d3a95.js.map": "/lakehouse-decision-tool/static/js/main.d15d3a95.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6d0649ce.css",
+    "static/js/main.d15d3a95.js"
+  ]
+}
