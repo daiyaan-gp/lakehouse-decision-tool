@@ -1,432 +1,331 @@
-// src/data/lakehouseMatrix.js
-
 const lakehouseMatrix = [
     // 1) Data Storage
     {
       component: "Data Storage",
       technology: "AWS Managed",
       cost: "Low",
-      costValue: 1,
-      price: 2000,
+      price: 15,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 5,
-      complexity: "Low",
-      complexityValue: 1
+      timeToMarketDays: 4, 
+      complexity: "Low"
     },
     {
       component: "Data Storage",
       technology: "Azure Managed",
       cost: "Low",
-      costValue: 1,
-      price: 2200,
+      price: 18,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 6,
-      complexity: "Low",
-      complexityValue: 1
+      timeToMarketDays: 5,
+      complexity: "Low"
     },
     {
       component: "Data Storage",
       technology: "GCP Managed",
       cost: "Low",
-      costValue: 1,
-      price: 1800,
+      price: 16,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 5,
-      complexity: "Low",
-      complexityValue: 1
+      timeToMarketDays: 4,
+      complexity: "Low"
     },
     {
       component: "Data Storage",
       technology: "Databricks Managed",
       cost: "-",
-      costValue: 0,
       price: 0,
       timeToMarket: "-",
-      timeToMarketValue: 0,
       timeToMarketDays: 0,
-      complexity: "-",
-      complexityValue: 0
+      complexity: "-"
     },
     {
       component: "Data Storage",
       technology: "Self-Hosted",
       cost: "Moderate",
-      costValue: 2,
-      price: 5000,
+      price: 30,
       timeToMarket: "Moderate",
-      timeToMarketValue: 2,
-      timeToMarketDays: 14,
-      complexity: "High",
-      complexityValue: 3
+      timeToMarketDays: 21, // Increased from 14 to 21
+      complexity: "High"
     },
+  
     // 2) Data Ingestion
     {
       component: "Data Ingestion",
       technology: "AWS Managed",
       cost: "Low",
-      costValue: 1,
-      price: 1500,
+      price: 15,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 7,
-      complexity: "Low",
-      complexityValue: 1
+      timeToMarketDays: 7,  // Increased from 4; setting up ingestion pipelines with potential dev/test cycles
+      complexity: "Low"
     },
     {
       component: "Data Ingestion",
       technology: "Azure Managed",
       cost: "Low",
-      costValue: 1,
-      price: 1600,
+      price: 20,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 8,
-      complexity: "Low",
-      complexityValue: 1
+      timeToMarketDays: 7,
+      complexity: "Low"
     },
     {
       component: "Data Ingestion",
       technology: "GCP Managed",
       cost: "Low",
-      costValue: 1,
-      price: 1400,
+      price: 18,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
       timeToMarketDays: 7,
-      complexity: "Low",
-      complexityValue: 1
+      complexity: "Low"
     },
     {
       component: "Data Ingestion",
       technology: "Databricks Managed",
-      cost: "Low",
-      costValue: 1,
-      price: 2000,
+      cost: "Moderate",
+      price: 35,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 5,
-      complexity: "Low",
-      complexityValue: 1
+      timeToMarketDays: 5,  // Slight extension for cluster + pipeline config
+      complexity: "Low"
     },
     {
       component: "Data Ingestion",
       technology: "Self-Hosted",
-      cost: "Low",
-      costValue: 1,
-      price: 1000,
+      cost: "Moderate",
+      price: 30,
       timeToMarket: "Moderate",
-      timeToMarketValue: 2,
-      timeToMarketDays: 21,
-      complexity: "High",
-      complexityValue: 3
+      timeToMarketDays: 30,  // Increased from 14 to 30, significant overhead for a single data scientist
+      complexity: "High"
     },
+  
     // 3) Data Processing (ETL/ELT)
     {
       component: "Data Processing (ETL/ELT)",
       technology: "AWS Managed",
-      cost: "Low",
-      costValue: 1,
-      price: 3000,
+      cost: "Moderate",
+      price: 40,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 10,
-      complexity: "Low",
-      complexityValue: 1
+      timeToMarketDays: 7,   // Up from 5 to 7, reflecting iteration with AWS Glue/Step Functions
+      complexity: "Low"
     },
     {
       component: "Data Processing (ETL/ELT)",
       technology: "Azure Managed",
-      cost: "Low",
-      costValue: 1,
-      price: 3200,
+      cost: "Moderate",
+      price: 45,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 12,
-      complexity: "Low",
-      complexityValue: 1
+      timeToMarketDays: 10,  // Up from 5, especially if orchestrating more complex Data Factory pipelines
+      complexity: "Low"
     },
     {
       component: "Data Processing (ETL/ELT)",
       technology: "GCP Managed",
-      cost: "Low",
-      costValue: 1,
-      price: 2800,
+      cost: "Moderate",
+      price: 42,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 9,
-      complexity: "Low",
-      complexityValue: 1
+      timeToMarketDays: 7,
+      complexity: "Low"
     },
     {
       component: "Data Processing (ETL/ELT)",
       technology: "Databricks Managed",
-      cost: "Low",
-      costValue: 1,
-      price: 4000,
+      cost: "Moderate",
+      price: 70,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 7,
-      complexity: "Low",
-      complexityValue: 1
+      timeToMarketDays: 5,
+      complexity: "Low"
     },
     {
       component: "Data Processing (ETL/ELT)",
       technology: "Self-Hosted",
-      cost: "Low",
-      costValue: 1,
-      price: 2000,
+      cost: "Moderate",
+      price: 35,
       timeToMarket: "Moderate",
-      timeToMarketValue: 2,
-      timeToMarketDays: 28,
-      complexity: "High",
-      complexityValue: 3
+      timeToMarketDays: 45,  // Increased from 28 to 45, Spark or other big data frameworks can be a slog
+      complexity: "High"
     },
+  
     // 4) Machine Learning Training
     {
       component: "Machine Learning Training",
       technology: "AWS Managed",
       cost: "Moderate",
-      costValue: 2,
-      price: 5000,
+      price: 70,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 14,
-      complexity: "Moderate",
-      complexityValue: 2
+      timeToMarketDays: 10, // Increased from 5, includes environment setup & iterative tuning
+      complexity: "Low"
     },
     {
       component: "Machine Learning Training",
       technology: "Azure Managed",
       cost: "Moderate",
-      costValue: 2,
-      price: 5500,
+      price: 80,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 15,
-      complexity: "Moderate",
-      complexityValue: 2
+      timeToMarketDays: 14, // Increased from 6 to 14, possibly multiple experiment runs & AutoML configurations
+      complexity: "Low"
     },
     {
       component: "Machine Learning Training",
       technology: "GCP Managed",
       cost: "Moderate",
-      costValue: 2,
-      price: 4800,
+      price: 75,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 13,
-      complexity: "Moderate",
-      complexityValue: 2
+      timeToMarketDays: 10, // Increased from 5, includes Vertex pipelines + hyperparameter tuning
+      complexity: "Low"
     },
     {
       component: "Machine Learning Training",
       technology: "Databricks Managed",
       cost: "Moderate",
-      costValue: 2,
-      price: 6000,
+      price: 100,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 10,
-      complexity: "Moderate",
-      complexityValue: 2
+      timeToMarketDays: 10, // Up from 5, multiple cluster configs & MLflow setups
+      complexity: "Low"
     },
     {
       component: "Machine Learning Training",
       technology: "Self-Hosted",
-      cost: "Low",
-      costValue: 1,
-      price: 3000,
-      timeToMarket: "High",
-      timeToMarketValue: 3,
-      timeToMarketDays: 35,
-      complexity: "High",
-      complexityValue: 3
+      cost: "High",
+      price: 120,
+      timeToMarket: "Moderate",
+      timeToMarketDays: 60,  // Increased from 30 to 60, HPC environment, MLOps tooling, GPU drivers, etc.
+      complexity: "High"
     },
+  
     // 5) Machine Learning Serving (Inference)
     {
       component: "Machine Learning Serving (Inference)",
       technology: "AWS Managed",
       cost: "High",
-      costValue: 3,
-      price: 8000,
+      price: 90,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 7,
-      complexity: "Low",
-      complexityValue: 1
+      timeToMarketDays: 7,  // Up from 4 to 7, testing endpoints, configuring auto-scaling, etc.
+      complexity: "Low"
     },
     {
       component: "Machine Learning Serving (Inference)",
       technology: "Azure Managed",
       cost: "High",
-      costValue: 3,
-      price: 8500,
+      price: 100,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 8,
-      complexity: "Low",
-      complexityValue: 1
+      timeToMarketDays: 7,
+      complexity: "Low"
     },
     {
       component: "Machine Learning Serving (Inference)",
       technology: "GCP Managed",
       cost: "High",
-      costValue: 3,
-      price: 7500,
+      price: 95,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 6,
-      complexity: "Low",
-      complexityValue: 1
+      timeToMarketDays: 7,
+      complexity: "Low"
     },
     {
       component: "Machine Learning Serving (Inference)",
       technology: "Databricks Managed",
       cost: "High",
-      costValue: 3,
-      price: 9000,
+      price: 150,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
       timeToMarketDays: 5,
-      complexity: "Low",
-      complexityValue: 1
+      complexity: "Low"
     },
     {
       component: "Machine Learning Serving (Inference)",
       technology: "Self-Hosted",
       cost: "Moderate",
-      costValue: 2,
-      price: 4000,
+      price: 80,
       timeToMarket: "Moderate",
-      timeToMarketValue: 2,
-      timeToMarketDays: 21,
-      complexity: "High",
-      complexityValue: 3
+      timeToMarketDays: 45,  // Increased from 21 to 45, self-hosting container orchestration + rollout + monitoring
+      complexity: "High"
     },
+  
     // 6) Exploratory Data Analysis
     {
       component: "Exploratory Data Analysis",
       technology: "AWS Managed",
       cost: "Moderate",
-      costValue: 2,
-      price: 4000,
+      price: 25,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 5,
-      complexity: "Low",
-      complexityValue: 1
+      timeToMarketDays: 7,  // Increased from 2, actual data prep + learning the environment
+      complexity: "Low"
     },
     {
       component: "Exploratory Data Analysis",
       technology: "Azure Managed",
       cost: "Moderate",
-      costValue: 2,
-      price: 4200,
+      price: 30,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 6,
-      complexity: "Low",
-      complexityValue: 1
+      timeToMarketDays: 10,  // Up from 3, might involve Synapse notebooks, linking to data, troubleshooting
+      complexity: "Low"
     },
     {
       component: "Exploratory Data Analysis",
       technology: "GCP Managed",
       cost: "Moderate",
-      costValue: 2,
-      price: 3800,
+      price: 28,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 4,
-      complexity: "Low",
-      complexityValue: 1
+      timeToMarketDays: 7,   // Up from 2, BigQuery setup + data transformations + dataset creation
+      complexity: "Low"
     },
     {
       component: "Exploratory Data Analysis",
       technology: "Databricks Managed",
       cost: "Moderate",
-      costValue: 2,
-      price: 5000,
+      price: 60,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 3,
-      complexity: "Low",
-      complexityValue: 1
+      timeToMarketDays: 5,   // Up from 2, cluster + notebook environment config, plus data ingestion
+      complexity: "Low"
     },
     {
       component: "Exploratory Data Analysis",
       technology: "Self-Hosted",
       cost: "Low",
-      costValue: 1,
-      price: 2000,
+      price: 20,
       timeToMarket: "Moderate",
-      timeToMarketValue: 2,
-      timeToMarketDays: 14,
-      complexity: "Moderate",
-      complexityValue: 2
+      timeToMarketDays: 30,  // Increased from 14 to 30, installing Jupyter/Spark, environment quirks, debugging
+      complexity: "High"
     },
+  
     // 7) Dashboards / BI
     {
       component: "Dashboards / BI",
       technology: "AWS Managed",
       cost: "Moderate",
-      costValue: 2,
-      price: 3000,
+      price: 35,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 7,
-      complexity: "Low",
-      complexityValue: 1
+      timeToMarketDays: 7,  // Up from 3, setting up QuickSight, user roles, initial dashboard design
+      complexity: "Low"
     },
     {
       component: "Dashboards / BI",
       technology: "Azure Managed",
       cost: "Moderate",
-      costValue: 2,
-      price: 3200,
+      price: 40,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 8,
-      complexity: "Low",
-      complexityValue: 1
+      timeToMarketDays: 7,
+      complexity: "Low"
     },
     {
       component: "Dashboards / BI",
       technology: "GCP Managed",
       cost: "Moderate",
-      costValue: 2,
-      price: 2800,
+      price: 35,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 6,
-      complexity: "Low",
-      complexityValue: 1
+      timeToMarketDays: 7,
+      complexity: "Low"
     },
     {
       component: "Dashboards / BI",
       technology: "Databricks Managed",
       cost: "Moderate",
-      costValue: 2,
-      price: 4000,
+      price: 45,
       timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 5,
-      complexity: "Low",
-      complexityValue: 1
+      timeToMarketDays: 5, 
+      complexity: "Low"
     },
     {
       component: "Dashboards / BI",
       technology: "Self-Hosted",
       cost: "Low",
-      costValue: 1,
-      price: 1500,
-      timeToMarket: "Low",
-      timeToMarketValue: 1,
-      timeToMarketDays: 14,
-      complexity: "Moderate",
-      complexityValue: 2
+      price: 15,
+      timeToMarket: "Moderate",
+      timeToMarketDays: 30,  // Increased from 14 to 30, open-source BI tools + integration can be non-trivial
+      complexity: "Moderate"
     }
   ];
   
