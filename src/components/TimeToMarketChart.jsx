@@ -19,48 +19,56 @@ ChartJS.register(
   Legend
 );
 
+// Shared color scheme for components
+export const COMPONENT_COLORS = {
+  "Data Storage": { bg: 'rgba(0, 99, 255, 0.9)', border: 'rgb(0, 99, 255)' },             // Royal Blue
+  "Data Ingestion": { bg: 'rgba(255, 69, 0, 0.9)', border: 'rgb(255, 69, 0)' },           // Orange Red
+  "Data Processing": { bg: 'rgba(147, 0, 255, 0.9)', border: 'rgb(147, 0, 255)' },        // Electric Purple
+  "ML Training": { bg: 'rgba(0, 184, 92, 0.9)', border: 'rgb(0, 184, 92)' },              // Emerald Green
+  "Machine Learning Serving (Inference)": { bg: 'rgba(255, 186, 0, 0.9)', border: 'rgb(255, 186, 0)' }, // Golden Yellow
+  "Exploratory Data Analysis": { bg: 'rgba(255, 0, 110, 0.9)', border: 'rgb(255, 0, 110)' }, // Hot Pink
+  "Dashboards / BI": { bg: 'rgba(0, 199, 255, 0.9)', border: 'rgb(0, 199, 255)' }         // Cyan
+};
+
+function shortenComponentName(name) {
+  if (name === "Machine Learning Serving (Inference)") return "ML Serving";
+  return name;
+}
+
 function TimeToMarketChart({ selectedData }) {
-  const shortenComponentName = (name) => {
-    if (name === "Machine Learning Serving (Inference)") return "ML Serving";
-    return name;
-  };
-
-  const data = {
-    labels: selectedData.map(row => shortenComponentName(row.component)),
-    datasets: [
-      {
-        label: 'Time to Market (Days)',
-        data: selectedData.map(row => row.timeToMarketDays),
-        backgroundColor: [
-          '#FF6384',  // Pink
-          '#36A2EB',  // Blue
-          '#FFCE56',  // Yellow
-          '#4BC0C0',  // Teal
-          '#9966FF',  // Purple
-          '#FF9F40',  // Orange
-          '#7CBA3B',  // Green
-        ],
-        borderRadius: 6,
-      }
-    ]
-  };
-
   const options = {
+    indexAxis: 'y',
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
       legend: {
         display: false
       },
+      title: {
+        display: true,
+        text: 'Time to Market (Days)',
+        font: {
+          size: 14
+        }
+      },
       tooltip: {
         callbacks: {
-          label: (context) => `${context.parsed.y} days`
+          label: (context) => `${context.parsed.x} days`
         }
       }
     },
     scales: {
       y: {
-        beginAtZero: true,
+        ticks: {
+          callback: function(value) {
+            return shortenComponentName(this.getLabelForValue(value));
+          }
+        }
+      },
+      x: {
+        grid: {
+          display: false
+        },
         title: {
           display: true,
           text: 'Days',
@@ -68,23 +76,27 @@ function TimeToMarketChart({ selectedData }) {
             size: 12
           }
         }
-      },
-      x: {
-        ticks: {
-          maxRotation: 45,
-          minRotation: 45,
-          font: {
-            size: 11
-          }
-        }
       }
     }
   };
 
+  const data = {
+    labels: selectedData.map(item => item.component),
+    datasets: [
+      {
+        data: selectedData.map(item => item.timeToMarketDays),
+        backgroundColor: selectedData.map(item => COMPONENT_COLORS[item.component].bg),
+        borderColor: selectedData.map(item => COMPONENT_COLORS[item.component].border),
+        borderWidth: 1,
+        borderRadius: 6,
+        borderSkipped: false
+      }
+    ]
+  };
+
   return (
-    <div className="w-full h-[300px]">
-      <h2 className="text-lg font-semibold mb-2">Time to Market by Component</h2>
-      <Bar data={data} options={options} />
+    <div style={{ height: '400px', width: '100%' }}>
+      <Bar options={options} data={data} />
     </div>
   );
 }

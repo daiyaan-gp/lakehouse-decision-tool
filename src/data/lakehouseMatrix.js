@@ -86,43 +86,43 @@ const lakehouseMatrix = [
     {
       component: "Data Ingestion",
       technology: "Self-Hosted",
-      cost: "Moderate",
+      cost: "Low",
       price: 15,
       timeToMarket: "Moderate",
       timeToMarketDays: 14, 
       complexity: "High"
     },
   
-    // 3) Data Processing (ETL/ELT)
+    // 3) Data Processing
     {
-      component: "Data Processing (ETL/ELT)",
+      component: "Data Processing",
       technology: "AWS Managed",
       cost: "Moderate",
-      price: 40,
+      price: 30,
       timeToMarket: "Low",
-      timeToMarketDays: 9,   // Up from 5 to 7, reflecting iteration with AWS Glue/Step Functions
+      timeToMarketDays: 9,
       complexity: "Low"
     },
     {
-      component: "Data Processing (ETL/ELT)",
+      component: "Data Processing",
       technology: "Azure Managed",
       cost: "Moderate",
-      price: 42,
+      price: 32,
       timeToMarket: "Low",
-      timeToMarketDays: 7,  // Up from 5, especially if orchestrating more complex Data Factory pipelines
+      timeToMarketDays: 7,
       complexity: "Low"
     },
     {
-      component: "Data Processing (ETL/ELT)",
+      component: "Data Processing",
       technology: "GCP Managed",
       cost: "Moderate",
-      price: 40,
+      price: 30,
       timeToMarket: "Low",
       timeToMarketDays: 8,
       complexity: "Low"
     },
     {
-      component: "Data Processing (ETL/ELT)",
+      component: "Data Processing",
       technology: "Databricks Managed",
       cost: "Moderate",
       price: 55,
@@ -131,59 +131,59 @@ const lakehouseMatrix = [
       complexity: "Low"
     },
     {
-      component: "Data Processing (ETL/ELT)",
+      component: "Data Processing",
       technology: "Self-Hosted",
-      cost: "Moderate",
-      price: 30,
+      cost: "Low",
+      price: 20,
       timeToMarket: "Moderate",
-      timeToMarketDays: 20,  // Increased from 28 to 45, Spark or other big data frameworks can be a slog
+      timeToMarketDays: 20,
       complexity: "High"
     },
   
-    // 4) Machine Learning Training
+    // 4) ML Training
     {
-      component: "Machine Learning Training",
+      component: "ML Training",
       technology: "AWS Managed",
-      cost: "Moderate",
+      cost: "High",
       price: 80,
       timeToMarket: "Moderate",
-      timeToMarketDays: 20, // Increased from 5, includes environment setup & iterative tuning
+      timeToMarketDays: 20,
       complexity: "Moderate"
     },
     {
-      component: "Machine Learning Training",
+      component: "ML Training",
       technology: "Azure Managed",
-      cost: "Moderate",
-      price: 85,
-      timeToMarket: "Moderate",
-      timeToMarketDays: 22, // Increased from 6 to 14, possibly multiple experiment runs & AutoML configurations
-      complexity: "Moderate"
-    },
-    {
-      component: "Machine Learning Training",
-      technology: "GCP Managed",
-      cost: "Moderate",
+      cost: "High",
       price: 75,
       timeToMarket: "Moderate",
-      timeToMarketDays: 20, // Increased from 5, includes Vertex pipelines + hyperparameter tuning
+      timeToMarketDays: 22,
       complexity: "Moderate"
     },
     {
-      component: "Machine Learning Training",
+      component: "ML Training",
+      technology: "GCP Managed",
+      cost: "High",
+      price: 70,
+      timeToMarket: "Moderate",
+      timeToMarketDays: 20,
+      complexity: "Moderate"
+    },
+    {
+      component: "ML Training",
       technology: "Databricks Managed",
       cost: "Moderate",
       price: 100,
       timeToMarket: "Low",
-      timeToMarketDays: 15, // Up from 5, multiple cluster configs & MLflow setups
+      timeToMarketDays: 15,
       complexity: "Moderate"
     },
     {
-      component: "Machine Learning Training",
+      component: "ML Training",
       technology: "Self-Hosted",
-      cost: "High",
-      price: 70,
+      cost: "Moderate",
+      price: 60,
       timeToMarket: "High",
-      timeToMarketDays: 40,  // Increased from 30 to 60, HPC environment, MLOps tooling, GPU drivers, etc.
+      timeToMarketDays: 40, 
       complexity: "High"
     },
   
@@ -228,7 +228,7 @@ const lakehouseMatrix = [
       component: "Machine Learning Serving (Inference)",
       technology: "Self-Hosted",
       cost: "Moderate",
-      price: 80,
+      price: 75,
       timeToMarket: "High",
       timeToMarketDays: 20,  // Increased from 21 to 45, self-hosting container orchestration + rollout + monitoring
       complexity: "High"
@@ -238,28 +238,28 @@ const lakehouseMatrix = [
     {
       component: "Exploratory Data Analysis",
       technology: "AWS Managed",
-      cost: "Moderate",
+      cost: "Low",
       price: 25,
       timeToMarket: "Low",
-      timeToMarketDays: 7,  // Increased from 2, actual data prep + learning the environment
+      timeToMarketDays: 7,
       complexity: "Moderate"
     },
     {
       component: "Exploratory Data Analysis",
       technology: "Azure Managed",
-      cost: "Moderate",
+      cost: "Low",
       price: 28,
       timeToMarket: "Low",
-      timeToMarketDays: 7,  // Up from 3, might involve Synapse notebooks, linking to data, troubleshooting
+      timeToMarketDays: 7,
       complexity: "Moderate"
     },
     {
       component: "Exploratory Data Analysis",
       technology: "GCP Managed",
-      cost: "Moderate",
+      cost: "Low",
       price: 22,
       timeToMarket: "Low",
-      timeToMarketDays: 7,   // Up from 2, BigQuery setup + data transformations + dataset creation
+      timeToMarketDays: 7,
       complexity: "Moderate"
     },
     {
@@ -268,7 +268,7 @@ const lakehouseMatrix = [
       cost: "Moderate",
       price: 35,
       timeToMarket: "Low",
-      timeToMarketDays: 5,   // Up from 2, cluster + notebook environment config, plus data ingestion
+      timeToMarketDays: 5,
       complexity: "Moderate"
     },
     {
@@ -277,7 +277,7 @@ const lakehouseMatrix = [
       cost: "Low",
       price: 15,
       timeToMarket: "Moderate",
-      timeToMarketDays: 14,  // Increased from 14 to 30, installing Jupyter/Spark, environment quirks, debugging
+      timeToMarketDays: 14,
       complexity: "Moderate"
     },
   

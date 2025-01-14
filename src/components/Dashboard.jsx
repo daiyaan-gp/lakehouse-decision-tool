@@ -10,12 +10,20 @@ import lakehouseMatrix from '../data/lakehouseMatrix';
 const COMPONENTS = [
   "Data Storage",
   "Data Ingestion",
-  "Data Processing (ETL/ELT)",
-  "Machine Learning Training",
+  "Data Processing",
+  "ML Training",
   "Machine Learning Serving (Inference)",
   "Exploratory Data Analysis",
   "Dashboards / BI"
 ];
+
+// Add scaling factors after COMPONENTS array
+const SCALING_FACTORS = [
+    { label: "Current (~10GB)", value: 1 },
+    { label: "10–100 GB Data", value: 2.5 },
+    { label: "100 GB–1 TB Data", value: 5 },
+    { label: "1 TB–10 TB Data", value: 10 },
+  ];
 
 function Dashboard() {
   // 1) Initialize state so each component defaults to "AWS Managed"
@@ -25,6 +33,9 @@ function Dashboard() {
       return acc;
     }, {})
   );
+
+  // Add scaling factor state
+  const [scalingFactor, setScalingFactor] = useState(SCALING_FACTORS[0].value);
 
   // 2) Handler to change a single component's technology selection
   const handleSelectionChange = (component, tech) => {
@@ -53,6 +64,9 @@ function Dashboard() {
     totalTimeToMarket: selectedData.reduce((sum, row) => sum + (row?.timeToMarketDays || 0), 0)
   };
 
+  // Add scaled price calculation
+  const scaledPrice = summaryMetrics.totalPrice * scalingFactor;
+
   // Add bulk update handler
   const handleBulkUpdate = (technology) => {
     const newSelections = COMPONENTS.reduce((acc, comp) => {
@@ -80,7 +94,9 @@ function Dashboard() {
   return (
     <div className="max-w-[1920px] mx-auto px-2">
       <div className="sticky top-0 bg-white z-10 pb-2">
-        <h1 className="text-2xl font-bold mb-4 text-center text-gray-800">Lakehouse Architecture Decision Dashboard</h1>
+        <h1 className="text-2xl font-bold mb-4 text-center text-gray-800">
+          Lakehouse Architecture Decision Dashboard
+        </h1>
         
         {/* Alert for mixed providers */}
         {hasMixedProviders() && (
@@ -140,9 +156,9 @@ function Dashboard() {
           <div className="bg-red-50 p-4 rounded-lg mt-4">
             <h3 className="text-lg font-bold mb-2 text-red-900">Startup Credits (if approved)</h3>
             <ul className="list-disc pl-6 space-y-1 text-red-800">
-              <li><span className="font-bold">AWS</span> - Up to $100,000 in credits for 2 years</li>
-              <li><span className="font-bold">Google Cloud</span> - Up to $100,000 in credits for 1 year</li>
-              <li><span className="font-bold">Azure</span> - Up to $150,000 in credits for 1 year</li>
+              <li><span className="font-bold">AWS</span> (Most Mature) - Up to $100,000 in credits for 1 year</li>
+              <li><span className="font-bold">Google Cloud</span> (Emerging) - Up to $200,000 in credits for 2 years</li>
+              <li><span className="font-bold">Azure</span> (Mature) - Up to $150,000 in credits for 1 year</li>
               <li><span className="font-bold">Databricks</span> - Up to $6,000 in credits</li>
             </ul>
           </div>
@@ -187,26 +203,60 @@ function Dashboard() {
           </table>
 
           {/* Summary Section */}
-          <div className="mt-6 grid grid-cols-2 gap-4">
-            <div className="p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm">
-              <h3 className="text-sm font-medium text-gray-600 mb-1">Total Estimated Price / Month</h3>
+          <div className="mt-6 space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm">
+                <h3 className="text-sm font-medium text-gray-600 mb-1">Total Estimated Price / Month for Current Data Volume</h3>
+                <p className="text-2xl font-bold text-gray-900">$
+                  <CountUp
+                    end={summaryMetrics.totalPrice}
+                    separator=","
+                    duration={0.5}
+                    preserveValue={true}
+                  />
+                </p>
+              </div>
+              <div className="p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm">
+                <h3 className="text-sm font-medium text-gray-600 mb-1">Total Time to Market</h3>
+                <p className="text-2xl font-bold text-gray-900">
+                  <CountUp
+                    end={summaryMetrics.totalTimeToMarket}
+                    duration={0.5}
+                    preserveValue={true}
+                  /> days
+                </p>
+              </div>
+            </div>
+            
+            <div className="p-4 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg shadow-sm">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-sm font-medium text-gray-600">Estimated Price per Month at Scale</h3>
+                <div className="relative">
+                  <select 
+                    value={scalingFactor}
+                    onChange={(e) => setScalingFactor(Number(e.target.value))}
+                    className="appearance-none bg-yellow-50 border border-yellow-200 text-sm rounded-md px-3 py-1.5 pr-8 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                  >
+                    {SCALING_FACTORS.map(factor => (
+                      <option key={factor.value} value={factor.value}>
+                        {factor.label}
+                      </option>
+                    ))}
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
               <p className="text-2xl font-bold text-gray-900">$
                 <CountUp
-                  end={summaryMetrics.totalPrice}
+                  end={scaledPrice}
                   separator=","
                   duration={0.5}
                   preserveValue={true}
                 />
-              </p>
-            </div>
-            <div className="p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm">
-              <h3 className="text-sm font-medium text-gray-600 mb-1">Total Time to Market</h3>
-              <p className="text-2xl font-bold text-gray-900">
-                <CountUp
-                  end={summaryMetrics.totalTimeToMarket}
-                  duration={0.5}
-                  preserveValue={true}
-                /> days
               </p>
             </div>
           </div>
