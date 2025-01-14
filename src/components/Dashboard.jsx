@@ -136,20 +136,15 @@ function Dashboard() {
             </div>
           </div>
 
-          {/* Startup Offers */}
-          <div className="bg-red-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2 text-red-900">Startup Credits (if approved)</h3>
-            <div className="space-y-2 text-sm">
-              <p className="text-red-800">
-                <span className="font-semibold">AWS:</span> <span className="font-bold">$100,000</span> for <span className="font-bold">1 year</span> (Most Mature)
-              </p>
-              <p className="text-red-800">
-                <span className="font-semibold">GCP:</span> <span className="font-bold">$200,000</span> for <span className="font-bold">2 years</span> (Emerging)
-              </p>
-              <p className="text-red-800">
-                <span className="font-semibold">Azure:</span> <span className="font-bold">$150,000</span> for <span className="font-bold">1 year</span> (Mature)
-              </p>
-            </div>
+          {/* Startup Credits Section */}
+          <div className="bg-red-50 p-4 rounded-lg mt-4">
+            <h3 className="text-lg font-bold mb-2 text-red-900">Startup Credits (if approved)</h3>
+            <ul className="list-disc pl-6 space-y-1 text-red-800">
+              <li><span className="font-bold">AWS</span> - Up to $100,000 in credits for 2 years</li>
+              <li><span className="font-bold">Google Cloud</span> - Up to $100,000 in credits for 1 year</li>
+              <li><span className="font-bold">Azure</span> - Up to $150,000 in credits for 1 year</li>
+              <li><span className="font-bold">Databricks</span> - Up to $6,000 in credits</li>
+            </ul>
           </div>
         </div>
 

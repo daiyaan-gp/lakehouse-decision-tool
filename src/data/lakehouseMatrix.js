@@ -13,7 +13,7 @@ const lakehouseMatrix = [
       component: "Data Storage",
       technology: "Azure Managed",
       cost: "Low",
-      price: 18,
+      price: 13,
       timeToMarket: "Low",
       timeToMarketDays: 5,
       complexity: "Low"
@@ -22,7 +22,7 @@ const lakehouseMatrix = [
       component: "Data Storage",
       technology: "GCP Managed",
       cost: "Low",
-      price: 16,
+      price: 15,
       timeToMarket: "Low",
       timeToMarketDays: 4,
       complexity: "Low"
@@ -42,7 +42,7 @@ const lakehouseMatrix = [
       cost: "Moderate",
       price: 30,
       timeToMarket: "Moderate",
-      timeToMarketDays: 21, // Increased from 14 to 21
+      timeToMarketDays: 14, 
       complexity: "High"
     },
   
@@ -51,7 +51,7 @@ const lakehouseMatrix = [
       component: "Data Ingestion",
       technology: "AWS Managed",
       cost: "Low",
-      price: 15,
+      price: 18,
       timeToMarket: "Low",
       timeToMarketDays: 7,  // Increased from 4; setting up ingestion pipelines with potential dev/test cycles
       complexity: "Low"
@@ -60,7 +60,7 @@ const lakehouseMatrix = [
       component: "Data Ingestion",
       technology: "Azure Managed",
       cost: "Low",
-      price: 20,
+      price: 18,
       timeToMarket: "Low",
       timeToMarketDays: 7,
       complexity: "Low"
@@ -78,7 +78,7 @@ const lakehouseMatrix = [
       component: "Data Ingestion",
       technology: "Databricks Managed",
       cost: "Moderate",
-      price: 35,
+      price: 25,
       timeToMarket: "Low",
       timeToMarketDays: 5,  // Slight extension for cluster + pipeline config
       complexity: "Low"
@@ -87,9 +87,9 @@ const lakehouseMatrix = [
       component: "Data Ingestion",
       technology: "Self-Hosted",
       cost: "Moderate",
-      price: 30,
+      price: 15,
       timeToMarket: "Moderate",
-      timeToMarketDays: 30,  // Increased from 14 to 30, significant overhead for a single data scientist
+      timeToMarketDays: 14, 
       complexity: "High"
     },
   
@@ -100,32 +100,32 @@ const lakehouseMatrix = [
       cost: "Moderate",
       price: 40,
       timeToMarket: "Low",
-      timeToMarketDays: 7,   // Up from 5 to 7, reflecting iteration with AWS Glue/Step Functions
+      timeToMarketDays: 9,   // Up from 5 to 7, reflecting iteration with AWS Glue/Step Functions
       complexity: "Low"
     },
     {
       component: "Data Processing (ETL/ELT)",
       technology: "Azure Managed",
       cost: "Moderate",
-      price: 45,
+      price: 42,
       timeToMarket: "Low",
-      timeToMarketDays: 10,  // Up from 5, especially if orchestrating more complex Data Factory pipelines
+      timeToMarketDays: 7,  // Up from 5, especially if orchestrating more complex Data Factory pipelines
       complexity: "Low"
     },
     {
       component: "Data Processing (ETL/ELT)",
       technology: "GCP Managed",
       cost: "Moderate",
-      price: 42,
+      price: 40,
       timeToMarket: "Low",
-      timeToMarketDays: 7,
+      timeToMarketDays: 8,
       complexity: "Low"
     },
     {
       component: "Data Processing (ETL/ELT)",
       technology: "Databricks Managed",
       cost: "Moderate",
-      price: 70,
+      price: 55,
       timeToMarket: "Low",
       timeToMarketDays: 5,
       complexity: "Low"
@@ -134,9 +134,9 @@ const lakehouseMatrix = [
       component: "Data Processing (ETL/ELT)",
       technology: "Self-Hosted",
       cost: "Moderate",
-      price: 35,
+      price: 30,
       timeToMarket: "Moderate",
-      timeToMarketDays: 45,  // Increased from 28 to 45, Spark or other big data frameworks can be a slog
+      timeToMarketDays: 20,  // Increased from 28 to 45, Spark or other big data frameworks can be a slog
       complexity: "High"
     },
   
@@ -145,28 +145,28 @@ const lakehouseMatrix = [
       component: "Machine Learning Training",
       technology: "AWS Managed",
       cost: "Moderate",
-      price: 70,
-      timeToMarket: "Low",
-      timeToMarketDays: 10, // Increased from 5, includes environment setup & iterative tuning
-      complexity: "Low"
+      price: 80,
+      timeToMarket: "Moderate",
+      timeToMarketDays: 20, // Increased from 5, includes environment setup & iterative tuning
+      complexity: "Moderate"
     },
     {
       component: "Machine Learning Training",
       technology: "Azure Managed",
       cost: "Moderate",
-      price: 80,
-      timeToMarket: "Low",
-      timeToMarketDays: 14, // Increased from 6 to 14, possibly multiple experiment runs & AutoML configurations
-      complexity: "Low"
+      price: 85,
+      timeToMarket: "Moderate",
+      timeToMarketDays: 22, // Increased from 6 to 14, possibly multiple experiment runs & AutoML configurations
+      complexity: "Moderate"
     },
     {
       component: "Machine Learning Training",
       technology: "GCP Managed",
       cost: "Moderate",
       price: 75,
-      timeToMarket: "Low",
-      timeToMarketDays: 10, // Increased from 5, includes Vertex pipelines + hyperparameter tuning
-      complexity: "Low"
+      timeToMarket: "Moderate",
+      timeToMarketDays: 20, // Increased from 5, includes Vertex pipelines + hyperparameter tuning
+      complexity: "Moderate"
     },
     {
       component: "Machine Learning Training",
@@ -174,16 +174,16 @@ const lakehouseMatrix = [
       cost: "Moderate",
       price: 100,
       timeToMarket: "Low",
-      timeToMarketDays: 10, // Up from 5, multiple cluster configs & MLflow setups
-      complexity: "Low"
+      timeToMarketDays: 15, // Up from 5, multiple cluster configs & MLflow setups
+      complexity: "Moderate"
     },
     {
       component: "Machine Learning Training",
       technology: "Self-Hosted",
       cost: "High",
-      price: 120,
-      timeToMarket: "Moderate",
-      timeToMarketDays: 60,  // Increased from 30 to 60, HPC environment, MLOps tooling, GPU drivers, etc.
+      price: 70,
+      timeToMarket: "High",
+      timeToMarketDays: 40,  // Increased from 30 to 60, HPC environment, MLOps tooling, GPU drivers, etc.
       complexity: "High"
     },
   
@@ -192,7 +192,7 @@ const lakehouseMatrix = [
       component: "Machine Learning Serving (Inference)",
       technology: "AWS Managed",
       cost: "High",
-      price: 90,
+      price: 100,
       timeToMarket: "Low",
       timeToMarketDays: 7,  // Up from 4 to 7, testing endpoints, configuring auto-scaling, etc.
       complexity: "Low"
@@ -210,7 +210,7 @@ const lakehouseMatrix = [
       component: "Machine Learning Serving (Inference)",
       technology: "GCP Managed",
       cost: "High",
-      price: 95,
+      price: 90,
       timeToMarket: "Low",
       timeToMarketDays: 7,
       complexity: "Low"
@@ -219,7 +219,7 @@ const lakehouseMatrix = [
       component: "Machine Learning Serving (Inference)",
       technology: "Databricks Managed",
       cost: "High",
-      price: 150,
+      price: 115,
       timeToMarket: "Low",
       timeToMarketDays: 5,
       complexity: "Low"
@@ -229,8 +229,8 @@ const lakehouseMatrix = [
       technology: "Self-Hosted",
       cost: "Moderate",
       price: 80,
-      timeToMarket: "Moderate",
-      timeToMarketDays: 45,  // Increased from 21 to 45, self-hosting container orchestration + rollout + monitoring
+      timeToMarket: "High",
+      timeToMarketDays: 20,  // Increased from 21 to 45, self-hosting container orchestration + rollout + monitoring
       complexity: "High"
     },
   
@@ -242,43 +242,43 @@ const lakehouseMatrix = [
       price: 25,
       timeToMarket: "Low",
       timeToMarketDays: 7,  // Increased from 2, actual data prep + learning the environment
-      complexity: "Low"
+      complexity: "Moderate"
     },
     {
       component: "Exploratory Data Analysis",
       technology: "Azure Managed",
       cost: "Moderate",
-      price: 30,
+      price: 28,
       timeToMarket: "Low",
-      timeToMarketDays: 10,  // Up from 3, might involve Synapse notebooks, linking to data, troubleshooting
-      complexity: "Low"
+      timeToMarketDays: 7,  // Up from 3, might involve Synapse notebooks, linking to data, troubleshooting
+      complexity: "Moderate"
     },
     {
       component: "Exploratory Data Analysis",
       technology: "GCP Managed",
       cost: "Moderate",
-      price: 28,
+      price: 22,
       timeToMarket: "Low",
       timeToMarketDays: 7,   // Up from 2, BigQuery setup + data transformations + dataset creation
-      complexity: "Low"
+      complexity: "Moderate"
     },
     {
       component: "Exploratory Data Analysis",
       technology: "Databricks Managed",
       cost: "Moderate",
-      price: 60,
+      price: 35,
       timeToMarket: "Low",
       timeToMarketDays: 5,   // Up from 2, cluster + notebook environment config, plus data ingestion
-      complexity: "Low"
+      complexity: "Moderate"
     },
     {
       component: "Exploratory Data Analysis",
       technology: "Self-Hosted",
       cost: "Low",
-      price: 20,
+      price: 15,
       timeToMarket: "Moderate",
-      timeToMarketDays: 30,  // Increased from 14 to 30, installing Jupyter/Spark, environment quirks, debugging
-      complexity: "High"
+      timeToMarketDays: 14,  // Increased from 14 to 30, installing Jupyter/Spark, environment quirks, debugging
+      complexity: "Moderate"
     },
   
     // 7) Dashboards / BI
@@ -322,10 +322,10 @@ const lakehouseMatrix = [
       component: "Dashboards / BI",
       technology: "Self-Hosted",
       cost: "Low",
-      price: 15,
+      price: 20,
       timeToMarket: "Moderate",
-      timeToMarketDays: 30,  // Increased from 14 to 30, open-source BI tools + integration can be non-trivial
-      complexity: "Moderate"
+      timeToMarketDays: 14,  // Increased from 14 to 30, open-source BI tools + integration can be non-trivial
+      complexity: "Low"
     }
   ];
   
