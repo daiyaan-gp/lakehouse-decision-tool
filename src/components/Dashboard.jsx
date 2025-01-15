@@ -52,13 +52,7 @@ function Dashboard() {
     );
   });
 
-  // 4) Aggregate numeric values for the chart and summaries
-  const aggregatedMetrics = {
-    cost: selectedData.reduce((sum, row) => sum + (row?.costValue || 0), 0),
-    timeToMarket: selectedData.reduce((sum, row) => sum + (row?.timeToMarketValue || 0), 0),
-    complexity: selectedData.reduce((sum, row) => sum + (row?.complexityValue || 0), 0)
-  };
-
+  // 4) Calculate summary metrics
   const summaryMetrics = {
     totalPrice: selectedData.reduce((sum, row) => sum + (row?.price || 0), 0),
     totalTimeToMarket: selectedData.reduce((sum, row) => sum + (row?.timeToMarketDays || 0), 0)
