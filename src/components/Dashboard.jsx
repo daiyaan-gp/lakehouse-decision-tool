@@ -159,7 +159,7 @@ function Dashboard() {
               <li><span className="font-bold">AWS</span> (Most Mature) - Up to $100,000 in credits for 1 year</li>
               <li><span className="font-bold">Google Cloud</span> (Emerging) - Up to $200,000 in credits for 2 years</li>
               <li><span className="font-bold">Azure</span> (Mature) - Up to $150,000 in credits for 1 year</li>
-              <li><span className="font-bold">Databricks</span> - Up to $6,000 in credits</li>
+              <li><span className="font-bold">Databricks</span> - Up to $6,000 in credits for 6 months (Approved ✅)</li>
             </ul>
           </div>
         </div>
