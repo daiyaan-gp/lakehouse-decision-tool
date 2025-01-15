@@ -80,14 +80,34 @@ function Dashboard() {
     setSelectedTech(newSelections);
   };
 
-  // Check for mixed cloud providers
-  const hasMixedProviders = () => {
-    const providers = new Set(
-      Object.values(selectedTech).filter(tech => 
-        !["Self-Hosted", "Databricks Managed"].includes(tech)
-      )
+  // Check for mixed cloud providers and get the odd one out
+  const getOddProviderOut = () => {
+    const cloudSelections = Object.entries(selectedTech).filter(([_, tech]) => 
+      !["Self-Hosted", "Databricks Managed"].includes(tech)
     );
-    return providers.size > 1;
+    
+    if (cloudSelections.length < 2) return null;
+    
+    // Count occurrences of each provider
+    const providerCounts = cloudSelections.reduce((acc, [_, tech]) => {
+      acc[tech] = (acc[tech] || 0) + 1;
+      return acc;
+    }, {});
+    
+    // Find the majority provider
+    const majorityProvider = Object.entries(providerCounts)
+      .sort(([,a], [,b]) => b - a)[0][0];
+    
+    // Find components using non-majority provider
+    return Object.entries(selectedTech).find(([_, tech]) => 
+      !["Self-Hosted", "Databricks Managed"].includes(tech) && 
+      tech !== majorityProvider
+    )?.[1];
+  };
+
+  const isOddSelection = (tech) => {
+    const oddProvider = getOddProviderOut();
+    return tech === oddProvider;
   };
 
   // 5) Render UI
@@ -99,7 +119,7 @@ function Dashboard() {
         </h1>
         
         {/* Alert for mixed providers */}
-        {hasMixedProviders() && (
+        {getOddProviderOut() && (
           <div className="mb-4 p-3 bg-yellow-50 border-l-4 border-yellow-400 text-yellow-700">
             <p className="text-sm font-medium">
               ⚠️ Multi-cloud setup will lead to increased complexity and higher operational costs
@@ -134,6 +154,7 @@ function Dashboard() {
               label={comp}
               value={selectedTech[comp]}
               onChange={(tech) => handleSelectionChange(comp, tech)}
+              hasError={isOddSelection(selectedTech[comp])}
             />
           ))}
         </div>

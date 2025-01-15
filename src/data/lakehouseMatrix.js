@@ -6,7 +6,7 @@ const lakehouseMatrix = [
       cost: "Low",
       price: 15,
       timeToMarket: "Low",
-      timeToMarketDays: 4, 
+      timeToMarketDays: 5, 
       complexity: "Low"
     },
     {
@@ -15,7 +15,7 @@ const lakehouseMatrix = [
       cost: "Low",
       price: 13,
       timeToMarket: "Low",
-      timeToMarketDays: 5,
+      timeToMarketDays: 4,
       complexity: "Low"
     },
     {
@@ -24,7 +24,7 @@ const lakehouseMatrix = [
       cost: "Low",
       price: 15,
       timeToMarket: "Low",
-      timeToMarketDays: 4,
+      timeToMarketDays: 6,
       complexity: "Low"
     },
     {
@@ -40,7 +40,7 @@ const lakehouseMatrix = [
       component: "Data Storage",
       technology: "Self-Hosted",
       cost: "Moderate",
-      price: 30,
+      price: 25,
       timeToMarket: "Moderate",
       timeToMarketDays: 14, 
       complexity: "High"
@@ -109,7 +109,7 @@ const lakehouseMatrix = [
       cost: "Moderate",
       price: 32,
       timeToMarket: "Low",
-      timeToMarketDays: 7,
+      timeToMarketDays: 6,
       complexity: "Low"
     },
     {
@@ -171,10 +171,10 @@ const lakehouseMatrix = [
     {
       component: "ML Training",
       technology: "Databricks Managed",
-      cost: "Moderate",
-      price: 100,
+      cost: "High",
+      price: 110,
       timeToMarket: "Low",
-      timeToMarketDays: 15,
+      timeToMarketDays: 14,
       complexity: "Moderate"
     },
     {
@@ -276,8 +276,8 @@ const lakehouseMatrix = [
       technology: "Self-Hosted",
       cost: "Low",
       price: 15,
-      timeToMarket: "Moderate",
-      timeToMarketDays: 14,
+      timeToMarket: "Low",
+      timeToMarketDays: 8,
       complexity: "Moderate"
     },
   
@@ -313,7 +313,7 @@ const lakehouseMatrix = [
       component: "Dashboards / BI",
       technology: "Databricks Managed",
       cost: "Moderate",
-      price: 45,
+      price: 50,
       timeToMarket: "Low",
       timeToMarketDays: 5, 
       complexity: "Low"
