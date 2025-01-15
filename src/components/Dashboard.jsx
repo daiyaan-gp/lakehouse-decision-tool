@@ -145,15 +145,15 @@ function Dashboard() {
 
   // 5) Render UI
   return (
-    <div className="max-w-[1920px] mx-auto px-2">
-      <div className="sticky top-0 bg-white z-10 pb-2">
+    <div className="max-w-[1920px] mx-auto">
+      <div className="sticky top-0 bg-white z-10">
         <div ref={headerRef}>
-          <h1 className="text-2xl font-bold mb-4 text-center text-gray-800">
+          <h1 className="text-2xl font-bold mb-2 text-center text-gray-800">
             Lakehouse Architecture Decision Dashboard
           </h1>
           
           {getOddProviderOut() && (
-            <div className="mb-4 p-3 bg-yellow-50 border-l-4 border-yellow-400 text-yellow-700">
+            <div className="mb-2 p-2 bg-yellow-50 border-l-4 border-yellow-400 text-yellow-700">
               <p className="text-sm font-medium">
                 ⚠️ Multi-cloud setup will lead to increased complexity and higher operational costs
               </p>
@@ -161,7 +161,7 @@ function Dashboard() {
           )}
         </div>
 
-        <div ref={buttonsRef} className="flex flex-wrap justify-center gap-2 py-4 px-8 bg-gray-50 rounded-lg">
+        <div ref={buttonsRef} className="flex flex-wrap justify-center gap-2 py-2 px-8 bg-gray-50 rounded-lg">
           <button onClick={() => handleBulkUpdate("AWS Managed")} className="px-6 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition-colors duration-200 text-sm">
             Set All to AWS Managed
           </button>
