@@ -1,6 +1,7 @@
 // src/components/Dashboard.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import CountUp from 'react-countup';
+import gsap from 'gsap';
 import DropdownSelector from './DropdownSelector';
 import TimeToMarketChart from './TimeToMarketChart';
 import CostDonutChart from './CostDonutChart';
@@ -26,6 +27,44 @@ const SCALING_FACTORS = [
   ];
 
 function Dashboard() {
+  // Add refs for animation
+  const headerRef = useRef(null);
+  const buttonsRef = useRef(null);
+  const dropdownsRef = useRef(null);
+  const chartsRef = useRef(null);
+  const tableRef = useRef(null);
+  const creditsRef = useRef(null);
+
+  // Add animation effect
+  useEffect(() => {
+    const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+    
+    tl.fromTo(headerRef.current,
+      { opacity: 0, y: -20 },
+      { opacity: 1, y: 0, duration: 0.5 }
+    )
+    .fromTo(buttonsRef.current,
+      { opacity: 0, y: -10 },
+      { opacity: 1, y: 0, duration: 0.3 },
+      '-=0.2'
+    )
+    .fromTo(dropdownsRef.current,
+      { opacity: 0, y: -10 },
+      { opacity: 1, y: 0, duration: 0.3 },
+      '-=0.1'
+    )
+    .fromTo([chartsRef.current, tableRef.current],
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.5, stagger: 0.2 },
+      '-=0.1'
+    )
+    .fromTo(creditsRef.current,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.3 },
+      '-=0.2'
+    );
+  }, []);
+
   // 1) Initialize state so each component defaults to "AWS Managed"
   const [selectedTech, setSelectedTech] = useState(
     COMPONENTS.reduce((acc, comp) => {
@@ -108,21 +147,21 @@ function Dashboard() {
   return (
     <div className="max-w-[1920px] mx-auto px-2">
       <div className="sticky top-0 bg-white z-10 pb-2">
-        <h1 className="text-2xl font-bold mb-4 text-center text-gray-800">
-          Lakehouse Architecture Decision Dashboard
-        </h1>
-        
-        {/* Alert for mixed providers */}
-        {getOddProviderOut() && (
-          <div className="mb-4 p-3 bg-yellow-50 border-l-4 border-yellow-400 text-yellow-700">
-            <p className="text-sm font-medium">
-              ⚠️ Multi-cloud setup will lead to increased complexity and higher operational costs
-            </p>
-          </div>
-        )}
+        <div ref={headerRef}>
+          <h1 className="text-2xl font-bold mb-4 text-center text-gray-800">
+            Lakehouse Architecture Decision Dashboard
+          </h1>
+          
+          {getOddProviderOut() && (
+            <div className="mb-4 p-3 bg-yellow-50 border-l-4 border-yellow-400 text-yellow-700">
+              <p className="text-sm font-medium">
+                ⚠️ Multi-cloud setup will lead to increased complexity and higher operational costs
+              </p>
+            </div>
+          )}
+        </div>
 
-        {/* Quick selection buttons */}
-        <div className="flex flex-wrap justify-center gap-2 py-4 px-8 bg-gray-50 rounded-lg">
+        <div ref={buttonsRef} className="flex flex-wrap justify-center gap-2 py-4 px-8 bg-gray-50 rounded-lg">
           <button onClick={() => handleBulkUpdate("AWS Managed")} className="px-6 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition-colors duration-200 text-sm">
             Set All to AWS Managed
           </button>
@@ -140,8 +179,7 @@ function Dashboard() {
           </button>
         </div>
 
-        {/* 5.1. Dropdown selectors */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 bg-white p-4 rounded-lg shadow-sm">
+        <div ref={dropdownsRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 bg-white p-4 rounded-lg shadow-sm">
           {COMPONENTS.map((comp) => (
             <DropdownSelector
               key={comp}
@@ -154,11 +192,9 @@ function Dashboard() {
         </div>
       </div>
 
-      {/* Chart and Table side by side */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
-        {/* 5.2. Charts */}
         <div className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div ref={chartsRef} className="grid grid-cols-2 gap-4">
             <div className="w-full bg-white p-4 rounded-lg shadow-sm">
               <TimeToMarketChart selectedData={selectedData} />
             </div>
@@ -167,8 +203,7 @@ function Dashboard() {
             </div>
           </div>
 
-          {/* Startup Credits Section */}
-          <div className="bg-red-50 p-4 rounded-lg mt-4">
+          <div ref={creditsRef} className="bg-red-50 p-4 rounded-lg mt-4">
             <h3 className="text-lg font-bold mb-2 text-red-900">Startup Credits (if approved)</h3>
             <ul className="list-disc pl-6 space-y-1 text-red-800">
               <li><span className="font-bold">AWS</span> (Most Mature) - Up to $100,000 in credits for 1 year</li>
@@ -179,8 +214,7 @@ function Dashboard() {
           </div>
         </div>
 
-        {/* 5.3. Table */}
-        <div className="w-full">
+        <div ref={tableRef} className="w-full">
           <h2 className="text-lg font-semibold mb-2">Selected Metrics per Component</h2>
           <table className="w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
@@ -217,7 +251,6 @@ function Dashboard() {
             </tbody>
           </table>
 
-          {/* Summary Section */}
           <div className="mt-6 space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm">
